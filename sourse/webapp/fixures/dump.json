@@ -1,0 +1,29 @@
+[
+{
+    "model": "webapp.task",
+    "pk": 1,
+    "fields": {
+        "task": "╩єяшЄ№ їыхс",
+        "status": "done",
+        "updated_at": "2021-12-23"
+    }
+},
+{
+    "model": "webapp.task",
+    "pk": 2,
+    "fields": {
+        "task": "╤фхырЄ№ фюьр°ъє",
+        "status": "in_progress",
+        "updated_at": "2021-12-23"
+    }
+},
+{
+    "model": "webapp.task",
+    "pk": 3,
+    "fields": {
+        "task": "┬√ЄюўшЄ№ фхЁхт ээюую шёЄєърэр",
+        "status": "new",
+        "updated_at": "2021-12-23"
+    }
+}
+]
