@@ -9,7 +9,7 @@ class Task(models.Model):
     updated_at = models.DateField(auto_now=True,null=True, blank=True, verbose_name="Дата")
 
     def __str__(self):
-        return f"{self.pk}.  {self.title}: {self.status}"
+        return f"{self.pk}.  {self.task}: {self.status}"
 
     class Meta:
         db_table = 'todo'
