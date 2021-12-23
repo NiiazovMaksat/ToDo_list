@@ -12,9 +12,9 @@
 <body>
     <a href="/add/">Добавить задачу</a>
     <h1>Список дел</h1>
-    {% for task in articles %}
-        <h3>{{ article.title }}</h3>
-        <p><a href="/view?pk={{ article.pk }}">Подробнее...</a></p>
+    {% for task in task %}
+        <h3>{{ task.task }}</h3>
+        <p><a href="/view?pk={{ task.pk }}">Подробнее...</a></p>
     {% endfor %}
 </body>
 </html>
