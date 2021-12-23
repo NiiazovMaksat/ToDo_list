@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.shortcuts import render
 
 from webapp.models import Task
+from webapp.models import status_choices
 
 
 def list_view(request):
@@ -13,7 +14,7 @@ def list_view(request):
 
 def create_view(request):
     if request.method == 'GET':
-        return render(request, 'create.html')
+        return render(request, 'create.html', {'status_choices': status_choices})
     else:
         task = request.POST.get('task')
         status = request.POST.get('status')
