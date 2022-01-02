@@ -1,9 +1,9 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseNotFound
 from webapp.models import Task
 from webapp.models import status_choices
 
@@ -28,6 +28,10 @@ def create_view(request):
 
 
 def todo_view(request, pk):
-    task = Task.objects.get(pk=pk)
+    #try:
+    #   task = Task.objects.get(pk=pk)
+    #except Task.DoesNotExist:
+    #    return HttpResponseNotFound("Статья не найдена")
+    task = get_object_or_404(Task, pk=pk)
     context = {"task": task}
     return render(request, 'view.html', context)
