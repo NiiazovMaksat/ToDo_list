@@ -2,15 +2,16 @@
 {% block title %}View{% endblock %}
 {% block nav %}
         <li class="nav-item">
-          <a class="nav-link" href="#">Delete</a>
+          <a class="nav-link" href="#">Edit</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'all' task.pk %}">More</a>
+          <a class="nav-link" href="{% url "view" task.pk %}">More</a>
         </li>
 {% endblock %}
 {% block content %}
     <h1>{{ task.task }}</h1>
     <h3>{{ task.status }}</h3>
+    <p>{{ task.description }}</p>
     <p>{{ task.updated_at }}</p>
 
 {% endblock %}

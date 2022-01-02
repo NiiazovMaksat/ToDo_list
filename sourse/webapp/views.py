@@ -35,3 +35,8 @@ def todo_view(request, pk):
     task = get_object_or_404(Task, pk=pk)
     context = {"task": task}
     return render(request, 'view.html', context)
+
+def view_all(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    context = {"task": task}
+    return render(request, 'view_all.html', context)
