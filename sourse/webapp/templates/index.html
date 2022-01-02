@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<a href="{% url "create" %}">Добавить задачу</a>
 <h1>Список дел</h1>
 {% for task in task %}
     <h3>{{ task.task }}</h3>
