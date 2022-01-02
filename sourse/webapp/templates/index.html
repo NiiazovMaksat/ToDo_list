@@ -14,7 +14,7 @@
     <h1>Список дел</h1>
     {% for task in task %}
         <h3>{{ task.task }}</h3>
-        <p><a href="/view?pk={{ task.pk }}">Подробнее</a></p>
+        <p><a href="/view/{{ task.pk }}/">Подробнее</a></p>
     {% endfor %}
 </body>
 </html>

@@ -20,11 +20,12 @@
     <select name="status" id="">
         {% for choice in status_choices %}
             <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+        {% endfor %}<br>
 
-
-        {% endfor %}
     </select><br/>
     <br/>
+    <label>Дата выполнения:</label><br/>
+    <input type="date" name="updated_at"/><br/>
     <input type="submit" value="Send"/>
 </form>
 <p><a href="/">На главную...</a></p>

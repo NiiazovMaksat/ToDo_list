@@ -6,10 +6,10 @@ status_choices = [('new', 'Новая'), ('in_progress', 'В процессе'),
 class Task(models.Model):
     task = models.CharField(max_length=200, null=False, blank=False, verbose_name="Задача")
     status = models.CharField(max_length=30, null=False, blank=False, default="new", choices=status_choices, verbose_name="Статус")
-    updated_at = models.DateField(auto_now=True,null=True, blank=True, verbose_name="Дата")
+    updated_at = models.DateField(auto_now=False,null=True, blank=False, verbose_name="Дедлайн")
 
     def __str__(self):
-        return f"{self.pk}.  {self.task}: {self.status}"
+        return f"{self.pk}.  {self.task}: {self.status} / {self.updated_at}"
 
     class Meta:
         db_table = 'todo'
