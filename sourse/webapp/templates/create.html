@@ -10,7 +10,7 @@
 <body>
 <h1>Create Article</h1>
 
-<form action="/add/" method="post">
+<form method="post">
     {% csrf_token %}
 
     <label>Задача:</label><br/>
@@ -28,7 +28,7 @@
     <input type="date" name="updated_at"/><br/>
     <input type="submit" value="Send"/>
 </form>
-<p><a href="/">На главную...</a></p>
+<p><a href="{% url "index" %}">На главную...</a></p>
 </body>
 </html>
 

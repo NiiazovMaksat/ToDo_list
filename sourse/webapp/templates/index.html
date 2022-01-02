@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <a href="add/">Добавить задачу</a>
+    <a href="{% url "create" %}">Добавить задачу</a>
     <h1>Список дел</h1>
     {% for task in task %}
         <h3>{{ task.task }}</h3>
-        <p><a href="/view/{{ task.pk }}/">Подробнее</a></p>
+        <p><a href="{% url "view" task.pk %}">Подробнее</a></p>
     {% endfor %}
 </body>
 </html>

@@ -1,7 +1,8 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.http import HttpResponseRedirect
 from webapp.models import Task
 from webapp.models import status_choices
@@ -20,8 +21,9 @@ def create_view(request):
         status = request.POST.get('status')
         updated_at = request.POST.get('updated_at')
         new_task = Task.objects.create(task=task, status=status, updated_at=updated_at)
-
-        return HttpResponseRedirect(f"/view/{new_task.pk}")
+        # url = reverse("view", kwargs={"pk": new_task.pk})
+        # return HttpResponseRedirect(url)
+        return redirect("view", pk=new_task.pk)
 
 
 
