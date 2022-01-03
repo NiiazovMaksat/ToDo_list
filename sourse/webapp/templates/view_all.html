@@ -11,7 +11,11 @@
 {% block content %}
     <h1>{{ task.task }}</h1>
     <h3>{{ task.status }}</h3>
-    <p>{{ task.description }}</p>
+    {% if task.description %}
+        <p>{{ task.description }}</p>
+    {% else %}
+        <p>Подробное описание отсутствует</p>
+    {% endif %}
     <p>{{ task.updated_at }}</p>
 
 {% endblock %}
