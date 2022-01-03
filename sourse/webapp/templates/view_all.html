@@ -4,9 +4,6 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Edit</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url "view" task.pk %}">More</a>
-        </li>
 {% endblock %}
 {% block content %}
     <h1>{{ task.task }}</h1>
@@ -17,5 +14,6 @@
         <p>Подробное описание отсутствует</p>
     {% endif %}
     <p>{{ task.updated_at }}</p>
+    <p>Страница детального просмотра куда можно выводить всю необходимую информацию</p>
 
 {% endblock %}
