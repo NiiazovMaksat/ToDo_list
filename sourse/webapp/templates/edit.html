@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}Create{% endblock %}
-{% block nav %} {% endblock %}
+{% block nav %}
+    <li class="nav-item">
+          <a class="nav-link" href="{% url 'view' task.pk %}">Back</a>
+    </li> {% endblock %}
 {% block content %}
 <h1>Edit</h1>
 
@@ -8,7 +11,7 @@
     {% csrf_token %}
 
     <label>Задача:</label><br/>
-    <input type="text" name="task"/><br/>
+    <input type="text" name="task" value="{{ task.task }}"/><br/>
 
     <label>Статус:</label><br/>
     <select name="status" id="">
@@ -19,10 +22,10 @@
     </select><br/>
     <br/>
     <label>Описание:</label><br/>
-    <p><textarea rows="5" cols="45" name="text"></textarea></p>
+    <p><textarea rows="5" cols="45" name="text">{{ task.description }}</textarea></p>
     <br>
     <label>Дата выполнения:</label><br/>
-    <input type="date" name="updated_at"/><br/>
+    <input type="date" name="updated_at" value=""/><br/>
     <br>
     <input type="submit" value="Send"/>
 </form>
