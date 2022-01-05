@@ -1,19 +1,15 @@
 {% extends 'base.html' %}
 {% block title %}View{% endblock %}
 {% block nav %}
-        <li class="nav-item">
-          <a class="nav-link" href="#">Edit</a>
-        </li>
+
 {% endblock %}
 {% block content %}
-    <h1>{{ task.task }}</h1>
-    <h3>{{ task.status }}</h3>
-    {% if task.description %}
-        <p>{{ task.description }}</p>
-    {% else %}
-        <p>Подробное описание отсутствует</p>
-    {% endif %}
-    <p>{{ task.updated_at }}</p>
-    <p>Страница детального просмотра куда можно выводить всю необходимую информацию</p>
+
+    <form method="post">
+    {% csrf_token %}
+    <h3>You want to delete {{ task.task }}?</h3>
+        <input type="submit" value="Yes">
+    </form>
+    <a href="{% url 'view' task.pk%}">NO</a>
 
 {% endblock %}

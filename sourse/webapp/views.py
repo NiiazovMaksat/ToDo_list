@@ -32,6 +32,7 @@ def todo_view(request, pk):
 
 def view_edit(request, pk):
     task = get_object_or_404(Task, pk=pk)
+
     if request.method == 'GET':
         return render(request, 'edit.html', {'task': task, 'status_choices': status_choices})
     else:
@@ -42,4 +43,13 @@ def view_edit(request, pk):
         task.save()
 
         return redirect("view", pk=task.pk)
+
+def view_delete(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+
+    if request.method == 'GET':
+        return render(request, 'delete.html',{'task': task})
+    else:
+        task.delete()
+        return redirect("index")
 
