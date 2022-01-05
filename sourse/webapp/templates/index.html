@@ -3,7 +3,10 @@
 {% block content %}
 <h1>Список дел</h1>
 {% for task in task %}
+    <hr>
     <h3>{{ task.task }}</h3>
-    <p><a href="{% url "view" task.pk %}">Подробнее</a></p>
+    <p><a href="{% url "view" task.pk %}">More</a></p>
+    <p><a href="{% url "edit" task.pk %}">Edit</a></p>
+    <p><a href="{% url "delete" task.pk %}">Delete</a></p>
 {% endfor %}
 {% endblock %}

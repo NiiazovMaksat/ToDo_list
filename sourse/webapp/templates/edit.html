@@ -8,26 +8,8 @@
 <h1>Edit</h1>
 
 <form method="post">
-    {% csrf_token %}
+    {% include "partial/form.html" with button_text="Edit"%}
 
-    <label>Задача:</label><br/>
-    <input type="text" name="task" value="{{ task.task }}"/><br/>
-
-    <label>Статус:</label><br/>
-    <select name="status" id="">
-        {% for choice in status_choices %}
-            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-        {% endfor %}<br>
-
-    </select><br/>
-    <br/>
-    <label>Описание:</label><br/>
-    <p><textarea rows="5" cols="45" name="text">{{ task.description }}</textarea></p>
-    <br>
-    <label>Дата выполнения:</label><br/>
-    <input type="date" name="updated_at" value=""/><br/>
-    <br>
-    <input type="submit" value="Send"/>
 </form>
 
 {% endblock %}
