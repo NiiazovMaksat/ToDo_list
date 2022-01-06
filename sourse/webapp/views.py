@@ -1,12 +1,10 @@
-from django.shortcuts import render
 
-# Create your views here.
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse
-from django.http import HttpResponseRedirect, HttpResponseNotFound
 from webapp.models import Task
 from webapp.models import status_choices
 
+
+from webapp.utils import task_validate
 
 def list_view(request):
     task = Task.objects.order_by("updated_at")
@@ -19,8 +17,13 @@ def create_view(request):
     else:
         task = request.POST.get('task')
         status = request.POST.get('status')
+        description = request.POST.get('description')
         updated_at = request.POST.get('updated_at')
-        new_task = Task.objects.create(task=task, status=status, updated_at=updated_at)
+        new_task = Task(task=task, status=status, description=description, updated_at=updated_at)
+        errors = task_validate(task, updated_at)
+        if errors:
+            return render(request, 'create.html', {'status_choices': status_choices, 'errors':errors, 'task': new_task})
+        new_task.save()
         return redirect("view", pk=new_task.pk)
 
 
@@ -40,6 +43,11 @@ def view_edit(request, pk):
         task.status = request.POST.get('status')
         task.description = request.POST.get('description')
         task.updated_at = request.POST.get('updated_at')
+        errors = task_validate(task.task, task.updated_at)
+        if errors:
+            return render(request, 'edit.html', {'status_choices': status_choices, 'errors': errors, 'task': task})
+
+
         task.save()
 
         return redirect("view", pk=task.pk)
