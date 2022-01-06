@@ -1,5 +1,7 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
+
+from webapp.forms import TaskForm
 from webapp.models import Task
 from webapp.models import status_choices
 
@@ -13,18 +15,20 @@ def list_view(request):
 
 def create_view(request):
     if request.method == 'GET':
-        return render(request, 'create.html', {'status_choices': status_choices})
+        form = TaskForm()
+        return render(request, 'create.html', {'status_choices': status_choices, 'form': form})
     else:
-        task = request.POST.get('task')
-        status = request.POST.get('status')
-        description = request.POST.get('description')
-        updated_at = request.POST.get('updated_at')
-        new_task = Task(task=task, status=status, description=description, updated_at=updated_at)
-        errors = task_validate(task, updated_at)
-        if errors:
-            return render(request, 'create.html', {'status_choices': status_choices, 'errors':errors, 'task': new_task})
-        new_task.save()
-        return redirect("view", pk=new_task.pk)
+        form = TaskForm(data=request.POST)
+        if form.is_valid():
+            task = form.cleaned_data.get('task')
+            status = form.cleaned_data.get('status')
+            description = form.cleaned_data.get('description')
+            updated_at = form.cleaned_data.get('updated_at')
+            new_task = Task.objects.create(task=task, status=status, description=description, updated_at=updated_at)
+            return redirect("view", pk=new_task.pk)
+
+        return render(request, 'create.html', {'status_choices': status_choices, 'form': form})
+
 
 
 

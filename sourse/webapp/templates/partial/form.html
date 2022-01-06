@@ -1,33 +1,40 @@
 {% csrf_token %}
-<label>Задача:</label><br/>
 
-{% if errors.task %}
-    <input class="border border-danger border-3" type="text" name="task" value="{{ task.task }}"/>
-    <p>{{ errors.task }}</p>
-{% else %}
-    <input type="text" name="task" value="{{ task.task }}"/><br/>
-{% endif %}
+{% for field in form %}
+    <p><label for="{{ field.id_for_label }}">{{ field.label }}</label></p>
+    {% for error in field.errors %}
+    <p class="text-danger">{{ error }}</p>
+    {% endfor %}
+    {{ field }}
+{% endfor %}
 
 
-    <label>Статус:</label><br/>
 
-    <select name="status" id="">
-        {% for choice in status_choices %}
-            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-        {% endfor %}<br>
 
-    </select><br/>
-    <br/>
-    <label>Описание:</label><br/>
-    <p><textarea rows="5" cols="45" name="description">{{ task.description }}</textarea></p>
-    <br>
-
-    <label>Дата выполнения:</label><br/>
-{% if errors.updated_at %}
-    <input class="border border-danger border-3" type="date" name="updated_at" value=""/>
-    <p>{{ errors.updated_at }}</p>
-{% else %}
-    <input type="date" name="updated_at" value={{ task.date_now }} /><br/>
-    <br>
-{% endif %}
+{#<p><label for="{{ form.task.id_for_label }}">{{ form.task.label }}</label></p>#}
+{#{% for error in form.task.errors %}#}
+{#<p class="text-danger">{{ error }}</p>#}
+{#{% endfor %}#}
+{#{{ form.task }}#}
+{##}
+{#<p><label for="{{ form.status.id_for_label }}">{{ form.status.label }}</label></p>#}
+{#{% for error in form.status.errors %}#}
+{#<p class="text-danger">{{ error }}</p>#}
+{#{% endfor %}#}
+{#{{ form.status }}#}
+{##}
+{#<p><label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label></p>#}
+{#{% for error in form.description.errors %}#}
+{#<p class="text-danger">{{ error }}</p>#}
+{#{% endfor %}#}
+{#{{ form.description }}#}
+{##}
+{#<p><label for="{{ form.updated_at.id_for_label }}">{{ form.updated_at.label }}</label></p>#}
+{#{% for error in form.updated_at.errors %}#}
+{#<p class="text-danger">{{ error }}</p>#}
+{#{% endfor %}#}
+{#{{ form.updated_at }}#}
+{#<br>#}
+{##}
+<br>
 <input type="submit" value="{{ button_text }}" />
